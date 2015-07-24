@@ -1,0 +1,74 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="format-detection" content="telephone=no">
+    <script>
+        (function (win,doc) {
+            var metaEl;
+            function setViewport() {
+                var psdWidth = 640;
+                var metaContent = ['width=' + psdWidth,'user-scalable=no'];
+                var scale = window.screen.width / psdWidth;
+                var ua = navigator.userAgent;
+                metaContent.push('minimum-scale=' + scale);
+                metaContent.push('maximum-scale=' + scale);
+                var match = ua.match(/Android (\d+\.\d+)/);
+                if (match){
+                    metaContent.push('target-densitydpi=device-dpi');
+                }
+                metaEl = metaEl || doc.createElement('meta');
+                metaEl.setAttribute('name', 'viewport');
+                metaEl.setAttribute('content',metaContent.join(','));
+                doc.documentElement.firstElementChild.appendChild(metaEl);
+            }
+            setViewport();
+            win.addEventListener('resize',setViewport , false);
+        })(window,document);
+    </script>
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
+    <!-- build:css(./bower_components) styles/vendor.css -->
+    <!-- bower:css -->
+    <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="../bower_components/fontawesome/css/font-awesome.css" />
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:css(app) styles/all.css -->
+    <link rel="stylesheet" href="styles/sprites.css">
+    <link rel="stylesheet" href="styles/all.css">
+    <!-- endbuild -->
+</head>
+<body ng-app="<%= scriptAppName %>">
+
+<!-- Add your site or application content here -->
+<div class="header">
+    <h2 class="text-center"><%= scriptAppName %></h2>
+</div>
+<div class="container">
+    <div ng-view></div>
+</div>
+<div class="loading-mask shown mui-flex center" ng-show="ROOT_loadingStatData.show">
+    <div class="loading-wrapper">
+        <i class="fa fa-spinner fa-spin fa-3x"></i><span ng-bind="ROOT_loadingStatData.loadingText"></span>请稍后...
+    </div>
+</div>
+
+<!-- build:js(./bower_components) scripts/vendor.js -->
+<!-- bower:js -->
+<script src="../bower_components/jquery/dist/jquery.js"></script>
+<script src="../bower_components/hammerjs/hammer.js"></script>
+<script src="../bower_components/angular/angular.js"></script>
+<script src="../bower_components/angular-route/angular-route.js"></script>
+<script src="../bower_components/angular-animate/angular-animate.js"></script>
+<script src="../bower_components/angular-sanitize/angular-sanitize.js"></script>
+<script src="../bower_components/ryanmullins-angular-hammer/angular.hammer.js"></script>
+<script src="../bower_components/angular-local-storage/dist/angular-local-storage.js"></script>
+<!-- endbower -->
+<!-- endbuild -->
+
+<!-- build:js({.tmp,app}) scripts/scripts.js -->
+<!-- endbuild -->
+</body>
+</html>
