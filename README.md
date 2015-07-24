@@ -1,4 +1,4 @@
-# generator-ngstone
+# generator-ngx
 used to build a **Mobile AngularJS** project scaffolding.
 
 > [Yeoman](http://yeoman.io) generator
@@ -17,13 +17,13 @@ angular及其插件版本升级至~1.4.0.
 ###1.安装
 在此之前请确保你安装了yo bower grunt-cli这三个*全局*模块，然后再安装本模块：  
 ````bash
-npm install -g generator-ngstone
+npm install -g generator-ngx
 ````
 
 ###2.初始化项目
 新建一个目录，比如又叫bookstore(咦？我为什么要说"又"呢),cd 进去(本工具所有命令都是在此根目录下执行)，执行：  
 ````bash
-yo ngstone
+yo ngx
 ````
 瞬间生成一坨文件，然后开始安装bower组件和node模块。  
 初始化完成后，你会发现bookstore下，生成了很多目录与文件。  
@@ -63,7 +63,7 @@ grunt serve
 如果你看到页面上有一个bookstoreApp标题，那么恭喜你成功初始化了一个Angular项目！  
 在以前的版本，在初始化工程时，就新建了一个叫做main的页面，为了跟之前的教程保持一致，这里执行一次：  
 ````bash
-yo ngstone:route main
+yo ngx:route main
 ````
 来新建一个main页面，就当剧透啦。
 回到浏览器，刷新，就可以看到yeoman的LOGO。
@@ -71,7 +71,7 @@ yo ngstone:route main
 ###5.开发一个新页面
 比如我们要开发一个图书list页面，执行：  
 ```
-yo ngstone:route list
+yo ngx:route list
 ```
 
 命令行最后几行提示：  
@@ -192,7 +192,7 @@ $scope.tap = function(){
 指令的生成有2个选项，所以单独拿出来说。比如我们要添加一个叫做hello的指令，执行：  
 
 ```
-yo ngstone:directive hello
+yo ngx:directive hello
 ```
 
 控制台会输出：  
@@ -224,7 +224,7 @@ angular.module('bookstoreApp')
 如果命令添加一个选项：  
 
 ```
-yo ngstone:directive hello --template
+yo ngx:directive hello --template
 ```
 
 则会添加一个template属性：  
@@ -249,7 +249,7 @@ angular.module('bookstoreApp')
 如果选项是 `templateUrl` ：  
 
 ```
-yo ngstone:directive hello --templateUrl
+yo ngx:directive hello --templateUrl
 ```
 
 控制台输出：  
@@ -281,7 +281,7 @@ angular.module('bookstoreApp')
 ```
 
 省去了人工配置的麻烦~  
-讲完了ngstone:directive的两个选项，接下来让我们完成这个hello指令。假定我使用了外部模板，即，使用`--templateUrl` 这个选项创建指令，我们在link函数里写上：  
+讲完了ngx:directive的两个选项，接下来让我们完成这个hello指令。假定我使用了外部模板，即，使用`--templateUrl` 这个选项创建指令，我们在link函数里写上：  
 
 ```
 $element.after('<p>Hello Directive!</p>')
@@ -323,12 +323,12 @@ Hello Directive!
 你可以先尝试执行  
 
 ```bash
-yo ngstone:karma-init
+yo ngx:karma-init
 ```  
 
 这条命令会安装phantomjs、karma-jasmine、grunt-karma、karma-phantomjs-launcher等模块，如果你的机器能够顺利完成的话，可以跳过此段落。
 如果安装不顺利，八成是卡在phantomjs的安装.可以尝试执行 `npm install -g phantomjs` 或者参考官网 http://phantomjs.org/download.html ，
-另外，通过homebrew也可以安装 `brew install phantomjs`。安装好phantomjs后，再执行 `yo ngstone:karma-init` ,应该问题都不大了。
+另外，通过homebrew也可以安装 `brew install phantomjs`。安装好phantomjs后，再执行 `yo ngx:karma-init` ,应该问题都不大了。
 再啰嗦一句，phantomjs装好后，是全局的，以后再次使用它就不用再安装了。  
 
 
@@ -376,7 +376,7 @@ e2e是 *end-to-end* 的简称，"端到端测试" 或 "场景测试" ，说白�
 npm install -g protractor
 ```
 protractor也是全局的，下次就不用装了~  
-然后，需要下载webdriver。官方的下载地址是 http://chromedriver.storage.googleapis.com/index.html  ，不过是被墙的，我这里 https://github.com/stoneChen/generator-ngstone/tree/master/webdriver 准备了一个，一个mac版，一个win版，你可以根据需要选择。
+然后，需要下载webdriver。官方的下载地址是 http://chromedriver.storage.googleapis.com/index.html  ，不过是被墙的，我这里 https://github.com/stoneChen/generator-ngx/tree/master/webdriver 准备了一个，一个mac版，一个win版，你可以根据需要选择。
 下过来后，解压缩出来是一个文件，把它放到 /usr/local/lib/node_modules/protractor/selenium下(win用户请自行对号入座，selenium目录可能不存在，自己建一个)  
 
 接下来我们造一个测试效果。  
@@ -628,15 +628,15 @@ angular.module('bookstoreApp')
 
 ##命令列表  
 
-1. yo ngstone      初始化工程
-2. yo ngstone:directive  {name}    生成directive，插入script标签到index.html,生成测试文件
-3. yo ngstone:factory    {name}    生成factory，插入script标签到index.html,生成测试文件
-4. yo ngstone:filter     {name}    生成filter，插入script标签到index.html,生成测试文件
-5. yo ngstone:decorator  {name}    生成decorator，插入script标签到index.html
-6. yo ngstone:controller {name}    生成controller，插入script标签到index.html,生成测试文件
-7. yo ngstone:view       {name}    生成视图文件
-8. yo ngstone:route      {name}    向app/scripts/app.js中添加路由配置,调用ngstone:controller和ngstone:view
-9. yo ngstone:karma-init          初始化单元测试环境
+1. yo ngx      初始化工程
+2. yo ngx:directive  {name}    生成directive，插入script标签到index.html,生成测试文件
+3. yo ngx:factory    {name}    生成factory，插入script标签到index.html,生成测试文件
+4. yo ngx:filter     {name}    生成filter，插入script标签到index.html,生成测试文件
+5. yo ngx:decorator  {name}    生成decorator，插入script标签到index.html
+6. yo ngx:controller {name}    生成controller，插入script标签到index.html,生成测试文件
+7. yo ngx:view       {name}    生成视图文件
+8. yo ngx:route      {name}    向app/scripts/app.js中添加路由配置,调用ngx:controller和ngx:view
+9. yo ngx:karma-init          初始化单元测试环境
 
 ##base服务中的关键模块说明
 
@@ -663,7 +663,7 @@ angular.module('bookstoreApp')
 
 这里讲一下两者的关键区别，简要起见，我们约定：  
 *A*=generator-angular生成的工程  
-*B*=generator-ngstone生成的工程  
+*B*=generator-ngx生成的工程  
 1. A的index.html的bower组件与我们自己模块的引用路径都是顶级路径，比如angular.js的引用路径：
 
 ```html

@@ -27,7 +27,7 @@ module.exports = yeoman.generators.Base.extend({
         var done = this.async();
         // Have Yeoman greet the user.
         this.log(yosay(
-                'Welcome to the swell ' + chalk.red('Angular-stone') + ' generator!'
+                'Welcome to the swell ' + chalk.red('Angular Scaffolding') + ' generator!'
         ));
         var isCwdEmpty = generatorUtil.isDirEmpty(process.cwd());
         var prompts = [

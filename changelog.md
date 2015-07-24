@@ -1,21 +1,2 @@
-##1.0.0
-正式升级到1.0.0  
-1. 全面向移动端迁移，不考虑PC端，删除初始化工程时的多种选择(比如只使用ui-router，删除ui-router的支持)，增强可维护性  
-2. 增加了新建route时新建子页面的less功能  
-3. 增加雪碧图自动化功能  
-4. 增加postcss任务为css属性添加浏览器前缀
-5. 默认加载基础服务，并包装成base模块  
-6. 删除biz相关模块
-
-##0.2.1
-1. 集成ui-router,用户可在angular-route和angular-ui-router之间选择，工具会根据结果做不同的初始化，ngstone:route命令也会根据是否使用ui-router做相应更改
-2. 去除route等命名限制（比如不能以s,x结尾）,ajax模拟机制，有少许影响，详见readme
-3. 其他优化  
-
-##0.1.1
-1. 集成protractor的e2e测试（可选）
-2. 单元测试改为可选，以及目录更改
-3. 单元测试所需的phantomjs虚拟浏览器安装以及其他依赖安装，从初始化中独立出来，因为安装过程很慢，同时也为了初始化工程更快
-
-##0.0.11  
-从0.0.1到0.0.11陆续完成完成第一版
+##1.0.1
+从[generator=ngstone](https://github.com/stoneChen/generator-ngstone)迁移过来，以新的名义重新发布

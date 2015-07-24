@@ -10,10 +10,10 @@ module.exports = SubGeneratorBase.extend({
         this._rewriteAppJs();
         this._generateE2ETest();
         this._addLessFile();
-        this.invoke('ngstone:controller',{
+        this.invoke('ngx:controller',{
             args:[this.name]
         });
-        this.invoke('ngstone:view',{
+        this.invoke('ngx:view',{
             args:[this.name,'--route']
         })
     },

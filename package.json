@@ -1,10 +1,10 @@
 {
-    "name": "generator-ngstone",
+    "name": "generator-ngx",
     "version": "1.0.1",
     "description": "Yeoman generator",
     "license": "MIT",
     "main": "app/index.js",
-    "repository": "stoneChen/generator-ngstone",
+    "repository": "stoneChen/generator-ngx",
     "author": {
         "name": "cloudstone",
         "email": "baby31529@aliyun.com",
