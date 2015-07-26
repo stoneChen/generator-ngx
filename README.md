@@ -50,6 +50,7 @@ grunt sprite
 ```
 将会生成app/styles/sprites.css与雪碧图，index.html已经默认引用了它，在后续开发中，调用相应的class即可引入背景。 
 若有不希望自动合并入雪碧图的图片，可以在 grunt-task-params.js中配置，下文会讲到。  
+你可以无限次的执行此命令，当你的背景图片或相关配置发生变化，不要忘记执行奥。
 若不执行此步骤，初始化文件中，已经有一个无代码的app/styles/sprites.css用于占位，不会404.  
 
 ###4.启动服务器
@@ -86,7 +87,7 @@ script added into index.html: scripts/controllers/list.js
 意思是，添加了引用controller的script标签到index.html，并创建了controller和测试文件，以及视图文件。  
 
 然后，回到浏览器，把地址栏里的 http://{{your IP}}:9000/#/main 改为 http://{{your IP}}:9000/#/list 回车，
-你会发现，最下面那句话，之前的main变成了list，也就是  
+你会发现，最下面那句话，之前的main变成了list，而且是无刷新的奥(angular的路由功能)，也就是  
 
 ```
 this is the list view. to be continued...  
@@ -166,6 +167,10 @@ angular.module('bookstoreApp')
 </body>
 ```
 再回到浏览器，分别点击标题下的的Home或List，就可以在主页和list页之前切换了！（这个是Angular的路由功能，已经不是本工具应该讨论的范畴了，就不深入说明了- -）  
+
+PS:
+关于自动刷新，对于启动服务后再创建的文件，可能会失效。有可能以前的版本是可以对新文件实现livereload，可能与grunt-newer有关(我删掉了官方版中的grunt-newer),我去查阅的grunt-newer官方文档，似乎没有相关的。  
+后来，使用generator-angular试验，确实是可以的。对比研究了大半个下午也没找到原因，这个问题，后续再解决吧囧。。todo占坑
 
 ####使用hammerjs手势
 本工具引入了ryanmullins-angular-hammer(hammerjs官网推荐)，它封装了hammerjs的所有手势指令。  
@@ -693,13 +698,15 @@ angular.module('bookstoreApp')
 5. A在初始化中安装单元测试环境，B在本版0.1.1把单元测试环境初始化从工程初始化独立出来，以加快初始化速度  
 6. B增加了less自动化任务，包括watch与打包时都会自动编译成css
 7. B增加了添加浏览器前缀的postcss处理
-8. B在新建路由时，会新建与路由相对应的less由于是单页应用，所有的css都一次性加载，势必考虑到css命名空间的问题
+8. B在新建路由时，会新建与路由相对应的less，由于是单页应用，所有的css都一次性加载，势必考虑到css命名空间的问题，请在各自路由视图的"根"class"作用域"内(page-xxx)，编写这个路由视图内的less代码
 9. B在common.less中增加了flex-box的基础class，直接调用相应class即可。
 10. B增加了雪碧图的自动化处理
 11. B增加了grunt额外参数配置，即上一节中的grunt-task-params.js
 12. B增加了自动获取当前机器的IP，自动以此IP访问应用，好处是，结合chrome的插件二维码生成器，可以很快用手机扫二维码，访问应用
 13. B增加了dialog，msg等常用组件。
-14. B是针对移动端的，引入了hammerjs来处理手势事件
+14. B是针对移动端的，引入了hammerjs来处理手势事件  
+
+未来可能将grunt迁移到gulp，以提高node服务性能与构建速度。 
 未完待续。。。 
 
 ##结语
