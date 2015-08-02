@@ -13,7 +13,7 @@ angular
         'ngAnimate',
         'ngSanitize',
         'ngCustomBase',
-        'hmTouchEvents',
+        'angular-gestures',
         'LocalStorageModule'
     ])
     .config(function ($routeProvider) {
@@ -27,5 +27,15 @@ angular
     })
     .config(function (rootDataServiceProvider) {//注册$rootScope全局对象，传入key的数组
         //rootDataServiceProvider.register(['ROOT_xxxxData'])
+    })
+    .config(function (hammerDefaultOptsProvider) {
+        hammerDefaultOptsProvider.set({
+            recognizers: [
+                //[Hammer.Swipe,{direction: Hammer.DIRECTION_HORIZONTAL}],
+                //[Hammer.Pan, {}],
+                //[Hammer.Tap, { event: 'doubletap', taps: 2 }, ['tap']],
+                [Hammer.Tap,{threshold:30}]
+            ]
+        });
     })
 ;
