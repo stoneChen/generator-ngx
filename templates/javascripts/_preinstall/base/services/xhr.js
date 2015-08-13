@@ -33,9 +33,6 @@ angular.module('ngCustomBase')
                 options.method = (method === 'GET' ? 'GET' : 'POST');
                 options.headers = options.headers || {};
                 options.headers['X-Requested-With'] = 'XMLHttpRequest';
-                if (options.method !== 'GET') {
-                    options.headers['contentType'] = 'application/json; charset=utf-8';
-                }
                 self.request(options)
                     .success(function (res, status, headers, config) {
                         var stat = res.stat;
