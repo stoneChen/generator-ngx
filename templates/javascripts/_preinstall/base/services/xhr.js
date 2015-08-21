@@ -44,7 +44,10 @@ angular.module('ngCustomBase')
                                 }
                                 break;
                             case 'LOGIN_TIMEOUT':
-                                localStorageService.set('pathBeforeLogin',$location.path());
+                                var curPath = $location.path();
+                                if(curPath !== '/login'){//防止pathBeforeLogin的值为/login，否则登陆完又还是在登陆页
+                                    localStorageService.set('pathBeforeLogin',curPath);
+                                }
                                 $location.path('/login');
                                 //history.pushState('')
                                 //ROOT_loginData.set('isLogin', false);
