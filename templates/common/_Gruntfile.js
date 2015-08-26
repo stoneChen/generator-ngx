@@ -170,6 +170,10 @@ module.exports = function (grunt) {
                                 '/bower_components',
                                 connect.static('./bower_components')
                             ),
+                            connect().use(
+                                '/mock',
+                                connect.static('./mock')
+                            ),
                             connect.static(appConfig.app),
                             mockMiddleware
                         ];
