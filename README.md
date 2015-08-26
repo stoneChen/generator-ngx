@@ -173,7 +173,7 @@ PS:
 后来，使用generator-angular试验，确实是可以的。对比研究了大半个下午也没找到原因，这个问题，后续再解决吧囧。。todo占坑
 
 ####使用hammerjs手势
-本工具引入了ryanmullins-angular-hammer(hammerjs官网推荐)，它封装了hammerjs的所有手势指令。  
+本工具引入了angular-gestures，它封装了hammerjs的所有手势指令。由于它最外层没有使用闭包，暴露了几个全局变量，故本人将其重新包装发布到bower。  
 使用最多的手势非tap莫属了，我们尝试一下。  
 在main.html里，为div.page-main根元素添加指令：  
 ````html
@@ -188,7 +188,7 @@ $scope.tap = function(){
 }
 ````
 用手机访问应用，手指点击一下灰色区域，将会弹出hello angular！  
-更多手势的使用，请访问 [AngularHammer](http://ryanmullins.github.io/angular-hammer/)  
+更多手势的使用，请访问 [angular-gestures](https://github.com/stoneChen/bower-ngx-gestures)  
 
 这样，一个简单的页面就开发完了，awesome！  
 
