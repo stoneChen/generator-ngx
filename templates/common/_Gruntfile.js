@@ -43,6 +43,7 @@ module.exports = function (grunt) {
     };
     function mockMiddleware(req, res, next) {
         //用于mock数据
+        grunt.log.writeln('--------------')
         grunt.log.writeln('request from client:' + req.url);
         var urlReg = /^\/(.+)\?_method=(GET|POST|PATCH|DELETE|PUT).*$/;// /users/5.json?_method=GET
         var match = req.url.match(urlReg);// ['...','users/5','GET']
@@ -73,7 +74,7 @@ module.exports = function (grunt) {
                 errors:'mock data file:[' + filePath + '] doesn\'t exist!'
             })
         }
-        grunt.log.writeln(result);
+        //grunt.log.writeln(result);
         res.end(result);
     }
     // Define the configuration for all the tasks

@@ -19,14 +19,19 @@ angular.module('ngCustomBase')
             'get': {
                 method: 'get'
             },
-            'query': {
+            'query': {//用于分页查询
                 method: 'get',
                 isArray: true,
                 params: {
-                    currentPage: 1
+                    currentPage: 1,
+                    pageSize: 10
                 }
             },
-            'new': {
+            'queryAll': {//一次性查询全部，不分页
+                method: 'get',
+                isArray: true
+            },
+            'create': {
                 method: 'post'
             },
             'update': {
@@ -48,7 +53,7 @@ angular.module('ngCustomBase')
 
 
         function resourceFactory(url, paramDefaults, actions, resourceConfig) {
-            var resourceConfig = extend({}, defaultResourceConfig, resourceConfig || {});
+            resourceConfig = extend({}, defaultResourceConfig, resourceConfig || {});
 
             function Resource(resourceData) {
                 extend(this, copy(resourceData));
@@ -127,7 +132,7 @@ angular.module('ngCustomBase')
                     httpConfig.method = action.method;//isNew ? 'post' : action.method;
                     hasBody && (httpConfig.data = data);
                     var promise = xhrService.send(httpConfig);
-                    promise.then(function (data) {
+                    var thenPromise = promise.then(function (data) {
                         if (action.isArray) {
                             var retCollection = [];
                             var collection = data['collection'];
@@ -151,8 +156,8 @@ angular.module('ngCustomBase')
                         }
                     }, function (res) {
                         (error || noop)(res);
-                    })
-                    return promise;
+                    });
+                    return thenPromise;
                 }
 
                 Resource.prototype['$' + actionName] = function (params, success, error) {
