@@ -7,6 +7,9 @@
  * Controller of the <%= scriptAppName %>
  */
 angular.module('<%= scriptAppName %>')
-    .controller('<%= classedName %>Ctrl', function ($scope,resourcePool) {
-        $scope
+    .controller('<%= classedName %>Ctrl', function (resourcePool) {
+        var vm = this;
+        angular.extend(vm, {
+
+        })
     });

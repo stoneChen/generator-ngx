@@ -40,7 +40,8 @@ module.exports = SubGeneratorBase.extend({
             splicable: [
                 ".when('/" + this.uri + "', {",
                 "    templateUrl: './views/" + (this.name + '/' + this.name) + ".html',",//path.join(this.name,this.name)在windows下斜杠是反的
-                "    controller: '" + this.classedName + "Ctrl'",
+                "    controller: '" + this.classedName + "Ctrl',",
+                "    controllerAs:'vm'",
                 "})"
             ]
         };
